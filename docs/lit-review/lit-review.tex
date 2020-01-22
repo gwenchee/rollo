@@ -185,8 +185,10 @@ The key part of this process is defining evaluation and termination criteria.
 
 Two types of genetic algorithms are typically used to solve shape 
 optimization problems: parametric and cell. 
-Parametric genetic algorithms optimize complex shapes by optimizing the shape 
-of characteristics curves \cite{renner_genetic_2003}. 
+Parametric genetic algorithms optimize complex shapes by varying parametric variables
+to meet the desired design performance.
+Examples of parametric variables are: diameter of a sphere, twist angle of a cylinder, 
+etc.  
 Optimization of aerodynamic configurations \cite{makinen_multidisciplinary_1999}, 
 and truss and bridge structures \cite{raich_evolving_2000} used parametric 
 genetic algorithms.
@@ -294,11 +296,11 @@ in the framework.
         \centering
         \doublespacing
         \small
-        \begin{tabular}{ll}
+        \begin{tabular}{lp{10cm}}
         \hline
         \textbf{Framework Component} & \textbf{Examples}\\ \hline
         Genetic algorithm & parametric, cell \cite{renner_genetic_2003} \\
-        Computer-aided design software & Trelis \cite{noauthor_trelis_2018}, FreeCAD \cite{falck_freecad_2012}, SolidWorks \cite{lombard_solidworks_2008}, grasshopper3d \cite{rutten_grasshopper3d_2015} \\
+        Computer-aided design software & Trelis \cite{noauthor_trelis_2018}, FreeCAD \cite{falck_freecad_2012}, SolidWorks \cite{lombard_solidworks_2008}, grasshopper3d \cite{rutten_grasshopper3d_2015}, GenerativeComponents \cite{aish_bentleys_2003} \\
         Neutron transport code & Serpent \cite{leppanen_serpent_2014}, MCNP \cite{werner_mcnp6._2018}, SCALE \cite{bucholz_scale:_1982}, OpenMC \cite{romano_openmc_2013} \\ 
         Thermal hydraulics code & RELAP5-3D \cite{strydom_comparison_2016}, RELAP7 \cite{andrs_relap-7_2012}, TRACE \cite{xu_multi-physics_2006}\\
         User-defined metrics/criteria & keff, heat transfer rate, fuel enrichment, mass of fuel \\ \hline
