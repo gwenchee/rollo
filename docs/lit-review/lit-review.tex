@@ -115,7 +115,7 @@ traditional design optimization tools.
 \subsection{State of Work}
 Generative design is used in the following industries: 
 automotive \cite{deplazes_autodesk_2019}, aerospace \cite{byrne_evolving_2014},
-architecture, product design etc. 
+architecture, civil engineering, construction, product design etc. 
 For the automotive and aerospace industries, the goal of generative 
 design is to decrease 
 the weight of the vehicle while ensuring each part can continue to 
@@ -127,7 +127,9 @@ SolidWorks Topology \cite{lombard_solidworks_2008}
 to produce their generative designs, since these softwares have 
 structural simulation-based generative design technology.  
 
-\subsection{Genetic Algorithms}
+Civil engineering and architecture generative design projects use specific s
+
+\subsection{Optimization Techniques}
 Multi-objective design problems inevitably require a trade off between 
 desirable attributes \cite{byrne_evolving_2014,simon_sciences_2019}. 
 In nuclear reactor design there are many trade offs, one example is the 
@@ -138,13 +140,28 @@ Conflicting objectives means that there is no one perfect solution, but a set
 of equally optimal solutions \cite{byrne_evolving_2014}.
 Multi-objective problems are difficult to optimize, such problems 
 cannot be handled by classical optimization methods such as gradient 
-methods, because only the local optimum will be found \cite{renner_genetic_2003}. 
+methods, because they tend to only find the local optimum 
+\cite{renner_genetic_2003} and are efficient for a narrow subset 
+of problems \cite{zames_genetic_1981}. 
+
 Evolutionary algorithms have proven to be successful 
 methods to optimize multi-objective problems \cite{krish_practical_2011} as 
 they can find a solution near the global optimum \cite{renner_genetic_2003}. 
 The most popular evolutionary algorithms used to solve multi-objective 
 problems are genetic algorithms 
 \cite{byrne_evolving_2014, krish_practical_2011}. 
+Genetic algorithms differ from classical optimization techniques in four ways 
+\cite{zames_genetic_1981}: 
+\begin{enumerate}
+        \item Work with each parameter's constraints, not
+        the parameters themselves. 
+        \item Search a population of points, not a single point. 
+        \item Use a user-defined objective function in the 
+        optimization process, not derivatives or other auxillary knowledge. 
+        \item Use stochastic rules, not deterministic rules. 
+\end{enumerate}
+
+\subsubsection{Genetic Algorithms}
 Genetic algorithms imitate natural selection to evolve solutions 
 by (1) maintaining a population of solutions, (2) allowing 
 fitter solutions reproduce, and (3) letting lesser fit solutions die off, 
@@ -153,6 +170,13 @@ resulting in final solutions that are better than the previous generations
 Figure \ref{fig:genetic_alg} depicts the iterative process of using a genetic 
 algorithm to solve a problem. 
 The key part of this process is defining evaluation and termination criteria. 
+Evaluation criteria refers to the performance metrics that each solution is 
+measured against. 
+Termination criteria refers to the range of values for each performance metric
+that a solution must meet to be considered `good enough'. 
+Attainment of optimum is much less important for complex systems, the goal is 
+to get a good solution without sacrificing the level of performance (speed of 
+code) \cite{zames_genetic_1981}. 
 
 \begin{figure}[!htbp]
         \centering
