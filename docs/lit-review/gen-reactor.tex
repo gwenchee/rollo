@@ -1,0 +1,164 @@
+\section{Generative Reactor Design}
+For nuclear reactors, generative design is constrained by 
+variables such as mass or volume of fuel, fuel enrichment, effectiveness 
+of heat transfer, effective neutron multiplication factor, etc. 
+Nuclear reactors not only experience physical forces, but also
+require evaluation of the neutronics of the system, therefore generative design of 
+a nuclear reactor cannot make use of tools such as Autodesk Fusion360 or SolidWorks 
+Topology. 
+Therefore, a framework that couples well-developed advanced genetic algorithms 
+with well-supported monte-carlo particle transport 
+codes (Serpent \cite{leppanen_serpent_2014}, 
+MCNP \cite{werner_mcnp6._2018}, etc.) and thermal hydraulics 
+codes (RELAP7 \cite{andrs_relap-7_2012} etc.)
+must be created to successfully produce generative reactor designs. 
+
+\subsection{Workflow}
+% How the genetic algorithm is coupled with a CAD designer and analysis tool 
+% (serpent/RELAP)
+% CAD designer > grasshopper3d (see Bryne Paper)
+Figure \ref{fig:workflow} depicts a framework for leveraging genetic algorithms
+to design nuclear reactors. 
+This is a general framework that does not specify algorithms or analytical 
+softwares. 
+Instead, it provides placeholders for algorithm and software types, so 
+that a user may choose the types of algorithms and softwares they want to use in 
+their mission towards using generative design to design a nuclear reactor. 
+Table \ref{tab:examples} lists algorithm and software types that could be used 
+in the framework. 
+
+\begin{figure}[!htbp]
+        \centering
+        \begin{tikzpicture}[node distance=2cm]
+                \tikzstyle{every node}=[font=\small]
+                \node[anchor=west] (1) [noblock] {\textbf{Create}};
+                \node (2) [bblock, right=of 1] {\textbf{GA: Creates population}};
+                \node (3) [pblock, right=of 2] {\textbf{GGS: Generates reactor designs}};
+                \node[anchor=west] (4) [noblock, below of= 1] {\textbf{Analyze}};
+                \node (5) [oblock, below of =2]{\textbf{NT: Run NT code for each solution}};
+                \node (6) [gblock, right=of 5]{\textbf{TH: Run TH code for each solution}};
+                \node[anchor=west] (7) [noblock, below of= 4] {\textbf{Evaluate}};
+                \node (8) [bblock, below of =5] {\textbf{GA: Evaluate population}};
+                \node (9) [ppblock, right=of 8] {\textbf{M: Evaluation based on performance metrics}};
+                \node[anchor=west] (10) [noblock, below of= 7] {\textbf{Check}};
+                \node (11) [lppblock, below of=8, xshift=3cm, yshift=-0.2cm] {\textbf{M: Is termination criteria met?}};
+                \node (16) [lbblock, below of = 11] {\textbf{GA: Best solution is returned!}};
+                \node[anchor=west] (12) [snoblock, above of= 2, xshift=3cm, yshift=-1.1cm] {};
+                \node[anchor=west] (13) [snoblock, below of=12,yshift=-0.15cm] {};
+                \node[anchor=west] (14) [snoblock, below of=13,yshift=-0.02cm] {};
+                \node[anchor=west] (15) [snoblock, below of=14,yshift=-0.02cm] {};
+                \node[anchor=west] (17) [noblock, below of= 10] {\textbf{Completed}};
+                \draw [-,thick] (11) -- ([shift={(3cm,0cm)}]11.east) |- node[anchor=west, yshift=-4.2cm] {no} ([shift={(0cm,0.7cm)}]12.north)--(12);
+                \draw [arrow] (12) -- ([shift={(0cm,0cm)}]12.north) |- ([shift={(0cm,0.4cm)}]2.north)--(2);
+                \draw [arrow] (12) -- ([shift={(0cm,0cm)}]12.north) |- ([shift={(0cm,0.4cm)}]3.north)--(3);
+                \draw [-,thick] (2) -- ([shift={(0cm,0cm)}]2.south) |- ([shift={(0cm,0.3cm)}]13.north)--(13);
+                \draw [-,thick] (3) -- ([shift={(0cm,0cm)}]3.south) |- ([shift={(0cm,0.3cm)}]13.north)--(13);
+                \draw [arrow] (13) -- ([shift={(0cm,0cm)}]13.north) |- ([shift={(0cm,0.3cm)}]5.north)--(5);
+                \draw [arrow] (13) -- ([shift={(0cm,0cm)}]13.north) |- ([shift={(0cm,0.3cm)}]6.north)--(6);
+                \draw [-,thick] (5) -- ([shift={(0cm,0cm)}]5.south) |- ([shift={(0cm,0.3cm)}]14.north)--(14);
+                \draw [-,thick] (6) -- ([shift={(0cm,0cm)}]6.south) |- ([shift={(0cm,0.3cm)}]14.north)--(14);
+                \draw [arrow] (14) -- ([shift={(0cm,0cm)}]14.north) |- ([shift={(0cm,0.3cm)}]8.north)--(8);
+                \draw [arrow] (14) -- ([shift={(0cm,0cm)}]14.north) |- ([shift={(0cm,0.21cm)}]9.north)--(9);
+                \draw [-,thick] (8) -- ([shift={(0cm,0cm)}]8.south) |- ([shift={(0cm,0.3cm)}]15.north)--(15);
+                \draw [-,thick] (9) -- ([shift={(0cm,0cm)}]9.south) |- ([shift={(0cm,0.3cm)}]15.north)--(15);
+                \draw [arrow] (15) -- ([shift={(0cm,0cm)}]15.north) |- ([shift={(0cm,0.1cm)}]11.north)--(11);
+                \draw [arrow] (11) -- ([shift={(0cm,0cm)}]11.south) |- node[anchor=west, yshift=0.3cm] {yes} ([shift={(0cm,0.1cm)}]16.north)--(16);
+                \matrix [draw,below left,yshift=-0.5cm, xshift=-7cm] at (current bounding box.south east) {
+                \node [bbblock,label=right:\textbf{GA: Genetic algorithm}] {}; \\
+                \node [bpblock,label=right:\textbf{GGS: Geometry generating software}] {}; \\
+                \node [boblock,label=right:\textbf{NT: Neutron transport code}] {}; \\
+                \node [bgblock,label=right:\textbf{TH: Thermal hydaulics code}] {}; \\
+                \node [bppblock,label=right:\textbf{M: User-defined metrics/criteria}] {}; \\
+                };
+        \end{tikzpicture}
+        \caption{Generative reactor design framework. Each component of the 
+        framework is user-selected.}
+        \label{fig:workflow}
+\end{figure}
+
+\begin{table}[!htbp]
+        \caption{Example algorithm and software types to populate generative reactor 
+        design framework (Fig \ref{fig:workflow}).}
+        \label{tab:examples}
+        \centering
+        \doublespacing
+        \small
+        \begin{tabular}{lp{10cm}}
+        \hline
+        \textbf{Framework Component} & \textbf{Examples}\\ \hline
+        Genetic algorithm driver & DEAP \cite{fortin_deap_2012} \\
+        Geometry generating software & Trelis \cite{noauthor_trelis_2018}, FreeCAD \cite{falck_freecad_2012}, SolidWorks \cite{lombard_solidworks_2008}, grasshopper3d \cite{rutten_grasshopper3d_2015}, GenerativeComponents \cite{aish_bentleys_2003}, Trilinos \cite{heroux_overview_2003} \\
+        Neutron transport code & Serpent \cite{leppanen_serpent_2014}, MCNP \cite{werner_mcnp6._2018}, SCALE \cite{bucholz_scale:_1982}, OpenMC \cite{romano_openmc_2013} \\ 
+        Thermal hydraulics code & RELAP5-3D \cite{strydom_comparison_2016}, RELAP7 \cite{andrs_relap-7_2012}, TRACE \cite{xu_multi-physics_2006}\\
+        User-defined metrics/criteria & keff, heat transfer rate, fuel enrichment, mass of fuel \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Software}
+The generative reactor design framework proposed (Fig. \ref{fig:workflow}) 
+has many coupled components. 
+To minimize the amount of coupling required, software is chosen with 
+framework-leanness in mind. 
+The shortlisted software will be evaluated based on the clearly 
+defined requirements of each component. 
+Each iteration of the framework requires the neutron transport code, 
+the thermal hydraulics code, and evaluation to be run for each 
+nuclear reactor geometry (individual) generated by the genetic algorithm. 
+Therefore, to ensure efficiency of the framework, the individual runs 
+must be parallelized. 
+The generative reactor design framework is computation-heavy. 
+To produce results in a timely manner, a high performance computer 
+such as Blue Waters \cite{ncsa_about_2017} will be used. 
+In summary, each component's software is chosen based on these 
+conditions: 
+\begin{enumerate}
+    \item It best meets the clearly defined requirements 
+    its respective component. 
+    \item It is parallelizable. 
+    \item It is compatible with a high performance computer. 
+    \item It is open-source and free (preferable but not required). 
+\end{enumerate}
+
+The subsequent subsections will define the requirements of each 
+component in the generative reactor framework, the software considered, 
+and an explanation justifying the final software choice. 
+
+\subsubsection{Genetic Algorithm Driver}
+Evolutionary algorithm computation is a sophisticated field with diverse
+techniques and mechanisms, resulting in even well designed frameworks 
+being complicated under the hood \cite{fortin_deap_2012}. 
+These implementation intricacies are difficult to extend since it requires 
+the user to edit the source code. 
+This is concerning since using evolutionary algorithms to solve unique 
+real-world problems requires customization of algorithms 
+\cite{fortin_deap_2012}. 
+Therefore, an evolutionary algorithm computation framework that gives 
+the user the capability to build custom evolutionary algorithms is 
+required for this project. 
+
+There are many evolutionary algorithm computation packages 
+available: \gls{DEAP} \cite{fortin_deap_2012}, 
+inspyred \cite{garrett_inspyred_2014}, 
+Pyevolve \cite{perone_pyevolve_2009}, and
+OpenBEAGLE \cite{gagne_open_2002}. 
+DEAP is the most newly created package and places a high value on 
+code compactness and code clarity \cite{fortin_deap_2012}. 
+A comparison of the number of lines of code each package requires 
+to define different components of a test problem, and \gls{DEAP} 
+was the only framework that completely defined the test problem 
+in less than one hundred lines of code \cite{fortin_deap_2012}.
+\gls{DEAP} is the only framework that allows the user to rapidly 
+prototype evolutionary algorithms and define custom algorithms without 
+having to dig deep into the source code to modify lines, making it 
+the code of choice for the genetic algorithm driver component of 
+the generative reactor design framework. 
+
+\subsubsection{Geometry Generating Software}
+
+
+\subsubsection{Neutron Transport Code}
+
+\subsubsection{Thermal Hydraulics Code}
+
+\subsection{Evaluation Metrics}
+

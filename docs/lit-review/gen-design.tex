@@ -1,0 +1,174 @@
+\section{Generative Design}
+% What is generative design? How does it work? 
+Generative design is an exploratory design method that autonomously 
+generates optimal designs by iteratively varying design geometry 
+to meet user-defined performance metrics 
+\cite{krish_practical_2011,oh_deep_2019}.
+The user defines the design parameters and the generative 
+design software helps the user create many solutions 
+simultaneously \cite{autodesk_autodesk_2020}. 
+This sometimes results in unanticipated unique solutions, that 
+would have been difficult to discover using traditional methods
+\cite{autodesk_autodesk_2020}.
+Generative design varies the parameters of the problem definition
+\cite{matejka_dream_2018}. 
+At each iteration step, the design is evaluated on the 
+performance metrics. 
+Based on the results, the generative design algorithm changes the 
+interval allowed for each design geometry variable, refining 
+design constraints (problem definition) and moving towards 
+designs that best meets performance metrics.
+
+There is confusion to how generative design differs from other shape 
+optimization tools. 
+Generative design is more than topology optimization which has been 
+around since 1988 \cite{bendsoe_generating_1988}. 
+Topology optimization requires the user to start with a complete design 
+and the software improves it by removing material, it answers the 
+fundamental engineering question of how to place material in a domain space 
+to obtain best structural performance \cite{sigmund_topology_2013}.   
+Generative design does not require the user to start with a complete design, but 
+instead a few design constraints. 
+Table \ref{tab:compare} summarizes the differences between generative design and 
+traditional design optimization tools. 
+
+\begin{table}[!htbp]
+        \caption{Comparison of generative design and traditional design optimization tools
+        \cite{autodesk_fusion_2020}.}
+        \label{tab:compare}
+        \centering
+        \doublespacing
+        \small
+        \begin{tabular}{p{3.7cm}|p{5.5cm}p{6cm}}
+        \hline
+        \textbf{Point of Comparison} & \textbf{Generative Design} & \textbf{Traditional Design Optimization Tools}  \\ \hline
+        Initial input & A few design constraints & Complete design \\ 
+        No. of outcomes & Generates a wide set of designs that meets design constraints & Identifies one unique design that meets constraints \\   
+        Solving strategies & Uses multiple strategies to solve design problem & Mainly uses topology optimization solutions \\ \hline
+        \end{tabular}
+\end{table}
+
+% How does it actually work? What models? 
+
+\subsection{State of Work}
+Generative design is used in the following industries: 
+automotive \cite{deplazes_autodesk_2019}, aerospace \cite{byrne_evolving_2014},
+architecture, civil engineering, construction, product design etc. 
+For the automotive and aerospace industries, the goal of generative 
+design is to decrease 
+the weight of the vehicle while ensuring each part can continue to 
+withstand the stresses and strains that are put on it within a 
+safety factor. 
+These industries can rely on commerical softwares such as 
+Autodesk Fusion360 \cite{autodesk_autodesk_2020} and  
+SolidWorks Topology \cite{lombard_solidworks_2008}
+to produce their generative designs, since these softwares have 
+structural simulation-based generative design technology.  
+
+Civil engineering and architecture generative design projects use specific s
+
+\subsection{Optimization Techniques}
+Multi-objective design problems inevitably require a trade off between 
+desirable attributes \cite{byrne_evolving_2014,simon_sciences_2019}. 
+In nuclear reactor design there are many trade offs, one example is the 
+trade-off between neutron economy and fuel enrichment. 
+A reactor design must have sufficient neutron economy to ensure criticality, 
+but must also have a low fuel enrichment to reduce proliferation risk.
+Conflicting objectives means that there is no one perfect solution, but a set
+of equally optimal solutions \cite{byrne_evolving_2014}.
+Multi-objective problems are difficult to optimize, such problems 
+cannot be handled by classical optimization methods such as gradient 
+methods, because they tend to only find the local optimum 
+\cite{renner_genetic_2003} and are efficient for a narrow subset 
+of problems \cite{zames_genetic_1981}. 
+
+Evolutionary algorithms have proven to be successful 
+methods to optimize multi-objective problems \cite{krish_practical_2011} as 
+they can find a solution near the global optimum \cite{renner_genetic_2003}. 
+The most popular evolutionary algorithms used to solve multi-objective 
+problems are genetic algorithms 
+\cite{byrne_evolving_2014, krish_practical_2011}. 
+Genetic algorithms differ from classical optimization techniques in four ways 
+\cite{zames_genetic_1981}: 
+\begin{enumerate}
+        \item Work with each parameter's constraints, not
+        the parameters themselves. 
+        \item Search a population of points, not a single point. 
+        \item Use a user-defined objective function in the 
+        optimization process, not derivatives or other auxillary knowledge. 
+        \item Use stochastic rules, not deterministic rules. 
+\end{enumerate}
+
+\subsubsection{Genetic Algorithms}
+Genetic algorithms imitate natural selection to evolve solutions 
+by (1) maintaining a population of solutions, (2) allowing 
+fitter solutions reproduce, and (3) letting lesser fit solutions die off, 
+resulting in final solutions that are better than the previous generations 
+\cite{renner_genetic_2003}. 
+Figure \ref{fig:genetic_alg} depicts the iterative process of using a genetic 
+algorithm to solve a problem. 
+The key part of this process is defining evaluation and termination criteria. 
+Evaluation criteria refers to the performance metrics that each solution is 
+measured against. 
+Termination criteria refers to the range of values for each performance metric
+that a solution must meet to be considered `good enough'. 
+Attainment of optimum is much less important for complex systems, the goal is 
+to get a good solution without sacrificing the level of performance (speed of 
+code) \cite{zames_genetic_1981}. 
+
+\begin{figure}[!htbp]
+        \centering
+        \begin{tikzpicture}[node distance=1.7cm]
+                \tikzstyle{every node}=[font=\small]
+                \node (1) [lbblock] {\textbf{Create initial population}};
+                \node (2) [lbblock, below of=1] {\textbf{Evaluate initial population}};
+                \node (3) [loblock, below of=2, yshift = -1.3cm] {\textbf{Create new population:} \\ 
+                \begin{enumerate} \item select individuals for mating 
+                                  \item create offspring by crossover 
+                                  \item mutate selected individuals 
+                                  \item keep selected individuals from previous generation
+                                 \end{enumerate}};
+                \node (4) [loblock, below of=3, yshift=-1.3cm] {\textbf{Evaluate new population}};
+                \node (5) [loblock, below of=4] {\textbf{Is termination criteria satisfied?}};
+                \node (6) [lbblock, below of=5] {\textbf{Best solution is returned!}};
+                \draw [arrow] (1) -- (2);
+                \draw [arrow] (2) -- (3);
+                \draw [arrow] (3) -- (4);
+                \draw [arrow] (4) -- (5);
+                \draw [arrow] (5) -- node[anchor=east] {Yes} (6);
+                \draw [arrow] (5) -- ([shift={(0.5cm,0cm)}]5.east)-- node[anchor=west] {no} ([shift={(0.5cm,0cm)}]3.east)--(3);
+        \end{tikzpicture}
+        \caption{Process of solving a problem with genetic algorithm 
+        \cite{renner_genetic_2003}. When a population does not meet termination 
+        criteria, a new generation is created. This occurs iteratively till the 
+        termination criteria is met. }
+        \label{fig:genetic_alg}
+\end{figure}
+
+Two types of genetic algorithms are typically used to solve shape 
+optimization problems: parametric and cell. 
+Parametric genetic algorithms optimize complex shapes by varying parametric variables
+to meet the desired design performance \cite{von_buelow_paragen_2012}.
+Examples of parametric variables are: diameter of a sphere, twist angle of a cylinder, 
+etc.  
+Optimization of aerodynamic configurations \cite{makinen_multidisciplinary_1999}, 
+and truss and bridge structures \cite{raich_evolving_2000} used parametric 
+genetic algorithms.
+Cell genetic algorithms represent the shape of an object to be optimized in 
+small subdivided rectangular domains (pixels in 2D, voxels in 3D) 
+\cite{renner_genetic_2003}. 
+Figure \ref{fig:cell} shows an example of cell representation. 
+Cell genetic algorithms are advantageous compared to parametric genetic 
+algorithms since the initial structure and topology of the object need not 
+be created and is instead developed through the iterative optimization 
+process \cite{renner_genetic_2003}. 
+Both parametric and cell genetic algorithms will be explored for the generative 
+reactor design problem. 
+
+\begin{figure}[!htbp]
+	\begin{center}
+		\includegraphics[scale=0.25]{./figures/cell.png}
+        \end{center}	
+        \caption{Cell representation in 2D \cite{renner_genetic_2003}.}
+        \label{fig:cell}
+\end{figure}
