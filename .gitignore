@@ -1,0 +1,14 @@
+*.acn 
+*.aux 
+*.DS_Store 
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.glo
+*.glsdefs
+*.ist
+*.log 
+*.out
+*.pdf
+*.gz
