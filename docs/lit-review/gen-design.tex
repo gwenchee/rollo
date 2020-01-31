@@ -49,24 +49,6 @@ traditional design optimization tools.
 \end{table}
 
 % How does it actually work? What models? 
-
-\subsection{State of Work}
-Generative design is used in the following industries: 
-automotive \cite{deplazes_autodesk_2019}, aerospace \cite{byrne_evolving_2014},
-architecture, civil engineering, construction, product design etc. 
-For the automotive and aerospace industries, the goal of generative 
-design is to decrease 
-the weight of the vehicle while ensuring each part can continue to 
-withstand the stresses and strains that are put on it within a 
-safety factor. 
-These industries can rely on commerical softwares such as 
-Autodesk Fusion360 \cite{autodesk_autodesk_2020} and  
-SolidWorks Topology \cite{lombard_solidworks_2008}
-to produce their generative designs, since these softwares have 
-structural simulation-based generative design technology.  
-
-Civil engineering and architecture generative design projects use specific s
-
 \subsection{Optimization Techniques}
 Multi-objective design problems inevitably require a trade off between 
 desirable attributes \cite{byrne_evolving_2014,simon_sciences_2019}. 
@@ -89,13 +71,14 @@ The most popular evolutionary algorithms used to solve multi-objective
 problems are genetic algorithms 
 \cite{byrne_evolving_2014, krish_practical_2011}. 
 Genetic algorithms differ from classical optimization techniques in four ways 
-\cite{zames_genetic_1981}: 
+\cite{zames_genetic_1981, pereira_genetic_2000}: 
 \begin{enumerate}
         \item Work with each parameter's constraints, not
         the parameters themselves. 
         \item Search a population of points, not a single point. 
-        \item Use a user-defined objective function in the 
-        optimization process, not derivatives or other auxillary knowledge. 
+        \item Does not need prior knowledge about search space and conducts
+        optimization process without calculating derivatives, continuity, 
+        limits, etc. 
         \item Use stochastic rules, not deterministic rules. 
 \end{enumerate}
 
@@ -105,6 +88,11 @@ by (1) maintaining a population of solutions, (2) allowing
 fitter solutions reproduce, and (3) letting lesser fit solutions die off, 
 resulting in final solutions that are better than the previous generations 
 \cite{renner_genetic_2003}. 
+Genetic algorithms demand extra computational cost compared to classical 
+optimization techniques. 
+Due to the availability of supercomputers, the use of genetic algorithms 
+has increased and its practical application has become a reality
+\cite{pereira_genetic_2000}. 
 Figure \ref{fig:genetic_alg} depicts the iterative process of using a genetic 
 algorithm to solve a problem. 
 The key part of this process is defining evaluation and termination criteria. 
@@ -172,3 +160,21 @@ reactor design problem.
         \caption{Cell representation in 2D \cite{renner_genetic_2003}.}
         \label{fig:cell}
 \end{figure}
+
+\subsection{State of Work}
+Generative design is used in the following industries: 
+automotive \cite{deplazes_autodesk_2019}, aerospace \cite{byrne_evolving_2014},
+architecture, civil engineering, construction, product design etc. 
+For the automotive and aerospace industries, the goal of generative 
+design is to decrease 
+the weight of the vehicle while ensuring each part can continue to 
+withstand the stresses and strains that are put on it within a 
+safety factor. 
+These industries can rely on commerical softwares such as 
+Autodesk Fusion360 \cite{autodesk_autodesk_2020} and  
+SolidWorks Topology \cite{lombard_solidworks_2008}
+to produce their generative designs, since these softwares have 
+structural simulation-based generative design technology.  
+
+Civil engineering and architecture generative design projects use specific s
+

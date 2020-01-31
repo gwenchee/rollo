@@ -90,6 +90,16 @@
 	year = {2018}
 }
 
+@article{simpson_considerations_2019,
+	title = {{CONSIDERATIONS} {FOR} {APPLICATION} {OF} {ADDITIVE} {MANUFACTURING} {TO} {NUCLEAR} {REACTOR} {CORE} {COMPONENTS}},
+	language = {en},
+	author = {Simpson, Joseph and Haley, James and Cramer, Corson and Shafer, Olivia and Elliott, Amy and Peter, Bill and Love, Lonnie and Dehoff, Ryan},
+	month = may,
+	year = {2019},
+	pages = {43},
+	file = {Simpson et al. - CONSIDERATIONS FOR APPLICATION OF ADDITIVE MANUFAC.pdf:/Users/gwenchee/Zotero/storage/GQS4I6IP/Simpson et al. - CONSIDERATIONS FOR APPLICATION OF ADDITIVE MANUFAC.pdf:application/pdf}
+}
+
 @article{strydom_comparison_2016,
 	title = {Comparison of the {PHISICS}/{RELAP5}-{3D} {Ring} and {Block} {Model} {Results} for {Phase} {I} of the {OECD}/{NEA} {MHTGR}-350 {Benchmark}},
 	volume = {193},
@@ -385,6 +395,25 @@ Really funny acknowledgements section}
 	file = {Fortin et al. - 2012 - DEAP Evolutionary algorithms made easy.pdf:/Users/gwenchee/Zotero/storage/P2SP8AFN/Fortin et al. - 2012 - DEAP Evolutionary algorithms made easy.pdf:application/pdf}
 }
 
+@inproceedings{veenstra_evolution_2018,
+	address = {Kyoto, Japan},
+	title = {Evolution of fin undulation on a physical knifefish-inspired soft robot},
+	isbn = {978-1-4503-5618-3},
+	url = {http://dl.acm.org/citation.cfm?doid=3205455.3205583},
+	doi = {10.1145/3205455.3205583},
+	abstract = {Soft robotics is a growing field of research and one of its challenges is how to efficiently design a controller for a soft morphology. This paper presents a marine soft robot inspired by the ghost knifefish that swims on the water surface by using an undulating fin underneath its body. We investigate how propagating wave functions can be evolved and how these affect the swimming performance of the robot. The fin and body of the robot are constructed from silicone and six wooden fin rays actuated by servo motors. In order to bypass the reality gap, which would necessitate a complex simulation of the fish, we implemented a Covariance Matrix Adaptation Evolution Strategy (CMA-ES) directly on the physical robot to optimize its controller for travel speed. Our results show that evolving a simple sine wave or a Fourier series can generate controllers that outperform a hand programmed controller. The results additionally demonstrate that the best evolved controllers share similarities with the undulation patterns of actual knifefish. Based on these results we suggest that evolution on physical robots is promising for future application in optimizing behaviors of soft robots.},
+	language = {en},
+	urldate = {2020-01-26},
+	booktitle = {Proceedings of the {Genetic} and {Evolutionary} {Computation} {Conference} on - {GECCO} '18},
+	publisher = {ACM Press},
+	author = {Veenstra, Frank and Jørgensen, Jonas and Risi, Sebastian},
+	year = {2018},
+	pages = {157--164},
+	annote = {Uses DEAP --{\textgreater} CMA-ES algorithm
+It uses the algorithm to find a swimming pattern that makes the soft robot fish swim the fastest},
+	file = {Veenstra et al. - 2018 - Evolution of fin undulation on a physical knifefis.pdf:/Users/gwenchee/Zotero/storage/9WFD39Q9/Veenstra et al. - 2018 - Evolution of fin undulation on a physical knifefis.pdf:application/pdf}
+}
+
 @techreport{heroux_overview_2003,
 	title = {An overview of {Trilinos}},
 	institution = {Citeseer},
@@ -416,4 +445,253 @@ Really funny acknowledgements section}
 	journal = {URL: https://pypi. python. org/pypi/inspyred (visited on 11/28/2016)},
 	author = {Garrett, Aaron},
 	year = {2014}
+}
+
+@article{bergmann_simulation_2018,
+	title = {Simulation {Methods} and {Results} of the {SINQ} {Cold} {Neutron} {Source} {Upgrade} {Study}},
+	volume = {1021},
+	issn = {1742-6588, 1742-6596},
+	url = {http://stacks.iop.org/1742-6596/1021/i=1/a=012081?key=crossref.e18b75661ab5b3814f22bb004238c891},
+	doi = {10.1088/1742-6596/1021/1/012081},
+	abstract = {Changing the conﬁguration of the cold neutron source during a planned extended shutdown of the Swiss Spallation Neutron Source (SINQ) is being considered for improving performance of instruments at SINQ that use cold neutrons. The cold neutron source consists of a 20 L volume of liquid D2 at approximately 25 K. This study includes making the re-entrant hole external, redesigning the re-entrant hole geometry, adding a Pb-208 reﬂector, replacing the zirconium safety hulls, adding cryogenic beryllium reﬂector/ﬁlters, and incorporating an active ortho-D2 conversion loop. The optimization methods and the eﬀects of the best-case modiﬁcations at all six neutron guides are presented. The best case design is predicted to yield a maximum gain factor of 1.5 in cold neutron intensity.},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Journal of Physics: Conference Series},
+	author = {Bergmann, R. M. and Filges, U. and Kiselev, D. and Klauser, C. and Rantsiou, E. and Talanov, V. and Wohlmuther, M. and Yamada, M.},
+	month = may,
+	year = {2018},
+	pages = {012081},
+	annote = {Imported CAD models into MCNP
+Used DEAP to find best REH configuration.
+The REG geometry was described by 9 variables (parameters), and these parameters were varied during the optimization process.},
+	file = {Bergmann et al. - 2018 - Simulation Methods and Results of the SINQ Cold Ne.pdf:/Users/gwenchee/Zotero/storage/TUMA44AM/Bergmann et al. - 2018 - Simulation Methods and Results of the SINQ Cold Ne.pdf:application/pdf}
+}
+
+@article{pereira_genetic_2000,
+	title = {Genetic {Algorithms} {Applied} to {Nuclear} {Reactor} {Design} {Optimization}},
+	url = {https://link.springer.com/chapter/10.1007/978-3-7908-1866-6_14},
+	doi = {10.1007/978-3-7908-1866-6_14},
+	abstract = {A genetic algorithm is a powerful search technique that simulates natural evolution in order to fit a population of computational structures to the solution of an optimization problem. This technique...},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Fuzzy Systems and Soft Computing in Nuclear Engineering},
+	author = {Pereira, C. M. N. A. and Schirru, R. and Martinez, A. S.},
+	year = {2000},
+	pages = {315--334},
+	annote = {See chapter 14: Genetic Algorithms Applied to NuclearReactor Design Optimization
+Parameters: array pitch, isotopic enrichment, dimensions and cell materials
+Genetic algorithm + nuclear reactor simulator coupling:
+
+Constraints: 1.041cm {\textless}= radius {\textless}= 3.048, 3.5\% {\textless}= enrichment {\textless}= 5\% 
+Optimization goal: 0.99 {\textless}= keff {\textless}=1.01
+Apply genetic algorithm to simple and complex problem. Complex problem has more objectives and parameters.},
+	file = {10.1007978-3-7908-1866-6.pdf:/Users/gwenchee/Zotero/storage/AW4R3RJD/10.1007978-3-7908-1866-6.pdf:application/pdf;Snapshot:/Users/gwenchee/Zotero/storage/PG5VXGAW/10.html:text/html}
+}
+
+@article{pevey_genetic_2019,
+	title = {Genetic {Algorithm} {Design} of a {Coupled} {Fast} and {Thermal} {Subcritical} {Assembly}},
+	issn = {0029-5450, 1943-7471},
+	url = {https://www.tandfonline.com/doi/full/10.1080/00295450.2019.1664198},
+	doi = {10.1080/00295450.2019.1664198},
+	abstract = {This paper discusses the design of a fast spectrum subcritical assembly utilizing a genetic algorithm. The facility proposed in this paper would be a flexible platform for expanding the knowledge of fast spectrum neutron cross sections needed for next-generation fast reactor designs. The Fast Neutron Source (FNS) would be composed of both a fast and a thermal region to minimize the amount of uranium fuel and reduce overall material costs while maintaining flexibility for many potential fast neutron crosssection experiments. The FNS would be customizable and interchangeable down to 1 × 1 × 10-in.-volume sections. An optimal core design requires the adjustment of many factors to both reduce the cost and accurately reproduce the spectra of interest during an experiment. A genetic algorithm was developed to optimize this complex design problem while reducing design time and expert judgment. The genetic algorithm was able to vary multiple design factors in an unattended fashion from a random initial population of designs and arrived at a design comparable to an expertly designed assembly.},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Nuclear Technology},
+	author = {Pevey, John and Chvála, Ondřej and Davis, Sarah and Sobes, Vladimir and Hines, J. Wes},
+	month = oct,
+	year = {2019},
+	pages = {1--11},
+	annote = {Describes genetic algorithm operator used from DEAP},
+	file = {Pevey et al. - 2019 - Genetic Algorithm Design of a Coupled Fast and The.pdf:/Users/gwenchee/Zotero/storage/BHTSNHTN/Pevey et al. - 2019 - Genetic Algorithm Design of a Coupled Fast and The.pdf:application/pdf}
+}
+
+@article{cacuci_global_1990,
+	title = {Global {Optimization} and {Sensitivity} {Analysis}},
+	copyright = {Copyright © Taylor \& Francis Group, LLC},
+	url = {https://www.tandfonline.com/doi/abs/10.13182/NSE90-A23704},
+	doi = {10.13182/NSE90-A23704},
+	abstract = {(1990). Global Optimization and Sensitivity Analysis. Nuclear Science and Engineering: Vol. 104, No. 1, pp. 78-88.},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Nuclear Science and Engineering},
+	author = {Cacuci, Dan G.},
+	year = {1990},
+	file = {Snapshot:/Users/gwenchee/Zotero/storage/NZFCAD9K/NSE90-A23704.html:text/html}
+}
+
+@article{dechaine_nuclear_1995,
+	title = {Nuclear fuel management optimization using genetic algorithms},
+	volume = {111},
+	number = {1},
+	journal = {Nuclear Technology},
+	author = {DeChaine, Michael D. and Feltus, Madeline Anne},
+	year = {1995},
+	pages = {109--114}
+}
+
+@article{chapot_new_1999,
+	title = {A new approach to the use of genetic algorithms to solve the pressurized water reactor's fuel management optimization problem},
+	volume = {26},
+	number = {7},
+	journal = {Annals of Nuclear Energy},
+	author = {Chapot, Jorge Luiz C. and Da Silva, Fernando Carvalho and Schirru, Roberto},
+	year = {1999},
+	pages = {641--655}
+}
+
+@article{schirru_genetic_1997,
+	title = {A genetic algorithm solution for combinatorial problems-the nuclear core reload example},
+	author = {SCHIRRU, Roberto and PEREIRA, Cláudio Márcio do Nascimento Abreu and Chapot, J. L. C. and Silva, F. C.},
+	year = {1997}
+}
+
+@article{alvarenga_adaptive_1997,
+	title = {Adaptive vector quantization optimized by genetic algorithm for real-time diagnosis through fuzzy sets},
+	volume = {120},
+	number = {3},
+	journal = {Nuclear Technology},
+	author = {Alvarenga, Marco Antonio Bayout and Martinez, Aquilino Senra and Schirru, Roberto},
+	year = {1997},
+	pages = {188--197}
+}
+
+@article{mol_neural_2006,
+	title = {Neural and genetic-based approaches to nuclear transient identification including ‘don't know’response},
+	volume = {48},
+	number = {3},
+	journal = {Progress in Nuclear Energy},
+	author = {Mol, Antonio CA and Almeida, José CS and Pereira, Cláudio MNA and Marins, Eugenio R. and Lapa, Celso Marcelo F.},
+	year = {2006},
+	pages = {268--282}
+}
+
+@article{pereira_basic_1999,
+	title = {Basic investigations related to genetic algorithms in core designs},
+	volume = {26},
+	number = {3},
+	journal = {Annals of Nuclear Energy},
+	author = {Pereira, Cláudio Márcio do Nascimento Abreu and Schirru, Roberto and Martinez, Aquilino Senra},
+	year = {1999},
+	pages = {173--193}
+}
+
+@article{feltus_incorporating_1997,
+	title = {Incorporating genetic algorithm techniques into optimized reloading of pressurized water reactors},
+	volume = {1},
+	number = {8},
+	journal = {Adv. Nucl. Fuel Managr. II, Proc. Top. Meet},
+	author = {Feltus, Madeline Anne and Levine, Samuel H. and Michael, D. DeChain and Haibach, Brain V.},
+	year = {1997},
+	pages = {75--8}
+}
+
+@article{omori_applications_1997,
+	title = {Applications of genetic algorithms to optimization problems in the solvent extraction process for spent nuclear fuel},
+	volume = {118},
+	number = {1},
+	journal = {Nuclear technology},
+	author = {Omori, Ryota and Sakakibara, Yasushi and Suzuki, Atsuyuki},
+	year = {1997},
+	pages = {26--31}
+}
+
+@article{nejad_optimal_2020,
+	title = {Optimal design of a {Small} {Modular} {Reactor} core with dual cooled annular fuel based on the neutronics and natural circulation parameters},
+	volume = {360},
+	issn = {00295493},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0029549320300133},
+	doi = {10.1016/j.nucengdes.2020.110518},
+	abstract = {Small Modular Reactors (SMRs) are the creative design of nuclear reactors that have received considerable attention in recent years. Since there is insufficient operational experience in SMRs, extensive research on these types of reactors may be needed to improve the current level of these systems performance. Also, one of the approaches which can help the enhancement of a reactor power is changing its fuel geometry. For this purpose, as well as decreasing the maximum fuel temperature in the reactors, the technology of annular fuels with the ability of internal and external cooling shows its importance. The nuclear SMRs with annular fuel which is cooled internally and externally has the potential to increase high power density while maintaining a sufficient safety margin. The benefit of the dual cooled annular fuel design is that heat can be transferred to the coolant at both the outer and inner channels. Hence, in this study, for the first time, dual cooled annular fuel in the Small Modular Reactors is considered and studied thoroughly. In this paper, neutronics and natural circulation parameters are calculated for an SMR with Annular Fuel which is cooled internally and externally, with changes of the internal radius. By analyzing the fuel internal radius changes in a specific range via the neutronics and computational fluid dynamics (CFD) simulation codes, the effects of power peaking factor, effective multiplication coefficient and natural circulation parameters are investigated. For the purpose of data fitting, an artificial neural network is trained using the observed data. The input consists of different internal radiuses which yields to output consisting effective multiplication factor, power peaking factor and natural circulation parameters. The Optimal geometry of annular fuel is determined using the neural network by implementing the genetic algorithms based on these neutronics and natural circulation parameters. Finally, using a simulated optimal geometry in the hot channel by neutronics and CFD simulations, thermal–hydraulic and neutronics calculations are accomplished, and these parameters are compared with the conventional SMR which uses solid (conventional) fuel. One of the main results of the evaluation is that optimal internally and externally cooled fuel in the presented SMR has a satisfactory margin for the departure from nucleate boiling (DNB) and maximum fuel rod temperature relative to the solid fuel which is used in the conventional SMRs. Indeed, fuel center temperature of conventional SMR is much more than that of presented optimal SMR. Also, presented optimal geometry increases the core effective multiplication coefficient which leads to increase in the excess reactivity. Also, reduces total power peaking factor and improves natural circulation parameters compared to the conventional SMR.},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Nuclear Engineering and Design},
+	author = {Nejad, M. Zaidabadi and Ansarifar, G.R.},
+	month = apr,
+	year = {2020},
+	pages = {110518},
+	annote = {Codes used: neutronics -{\textgreater} CITATION, TH -{\textgreater} Fluent and gambit, ANN -{\textgreater} MATLAB
+Parameters varied
+},
+	file = {Nejad and Ansarifar - 2020 - Optimal design of a Small Modular Reactor core wit.pdf:/Users/gwenchee/Zotero/storage/PA7MPV5Z/Nejad and Ansarifar - 2020 - Optimal design of a Small Modular Reactor core wit.pdf:application/pdf}
+}
+
+@article{kumar_new_2015,
+	title = {A new approach to nuclear reactor design optimization using genetic algorithms and regression analysis},
+	volume = {85},
+	issn = {03064549},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0306454915002285},
+	doi = {10.1016/j.anucene.2015.04.028},
+	abstract = {A module based optimization method using genetic algorithms (GA), and multivariate regression analysis has been developed to optimize a set of parameters in the design of a nuclear reactor. GA simulates natural evolution to perform optimization, and is widely used in recent times by the scientiﬁc community. The GA ﬁts a population of random solutions to the optimized solution of a speciﬁc problem. In this work, we have developed a genetic algorithm to determine the values for a set of nuclear reactor parameters to design a gas cooled fast breeder reactor core including a basis thermal–hydraulics analysis, and energy transfer. Multivariate regression is implemented using regression splines (RS). Reactor designs are usually complex and a simulation needs a signiﬁcantly large amount of time to execute, hence the implementation of GA or any other global optimization techniques is not feasible, therefore we present a new method of using RS in conjunction with GA. Due to using RS, we do not necessarily need to run the neutronics simulation for all the inputs generated from the GA module rather, run the simulations for a predeﬁned set of inputs, build a multivariate regression ﬁt to the input and the output parameters, and then use this ﬁt to predict the output parameters for the inputs generated by GA. The reactor parameters are given by the, radius of a fuel pin cell, isotopic enrichment of the ﬁssile material in the fuel, mass ﬂow rate of the coolant, and temperature of the coolant at the core inlet. And, the optimization objectives for the reactor core are, high breeding of U-233 and Pu-239 in desired power peaking limits, desired effective and inﬁnite neutron multiplication factors, high fast ﬁssion factor, high thermal efﬁciency in the conversion from thermal energy to electrical energy using the Brayton cycle, and high fuel burn-up. It is to be noted that we have kept the total mass of the fuel as constant. In this work, we present a module based (modular) approach to perform the optimization wherein, we have deﬁned the following modules: single fuel pin cell, whole core, thermal–hydraulics, and energy conversion. In each of the modules we have deﬁned a speciﬁc set of parameters and optimization objectives. The GA system (GAS), and RS together, play the role of optimizing each of the individual modules, and integrating the modules to determine the ﬁnal nuclear reactor core. However, implementation of GA could lead to a local minimum or a non-unique set of parameters, those meet the speciﬁc optimization objectives. The GA code is built using Java, neutronic analysis using MCNP6, thermal–hydraulics calculations using Java, and regression analysis using R.},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Annals of Nuclear Energy},
+	author = {Kumar, Akansha and Tsvetkov, Pavel V.},
+	month = nov,
+	year = {2015},
+	pages = {27--35},
+	file = {Kumar and Tsvetkov - 2015 - A new approach to nuclear reactor design optimizat.pdf:/Users/gwenchee/Zotero/storage/XUDKI4Q8/Kumar and Tsvetkov - 2015 - A new approach to nuclear reactor design optimizat.pdf:application/pdf}
+}
+
+@article{murr_frontiers_2016,
+	title = {Frontiers of {3D} {Printing}/{Additive} {Manufacturing}: from {Human} {Organs} to {Aircraft} {Fabrication}},
+	volume = {32},
+	issn = {1005-0302},
+	shorttitle = {Frontiers of {3D} {Printing}/{Additive} {Manufacturing}},
+	url = {https://www.sciencedirect.com/science/article/pii/S1005030216301335},
+	doi = {10.1016/j.jmst.2016.08.011},
+	abstract = {It has been more than three decades since stereolithography began to emerge in various forms of additive manufacturing and 3D printing. Today these te…},
+	language = {en},
+	number = {10},
+	urldate = {2020-01-29},
+	journal = {Journal of Materials Science \& Technology},
+	author = {Murr, Lawrence},
+	month = oct,
+	year = {2016},
+	pages = {987--995},
+	file = {Snapshot:/Users/gwenchee/Zotero/storage/XB2C4VHT/S1005030216301335.html:text/html}
+}
+
+@article{noauthor_printed_2017,
+	title = {Printed titanium parts expected to save millions in {Boeing} {Dreamliner} costs},
+	url = {https://www.reuters.com/article/us-norsk-boeing-idUSKBN17C264},
+	abstract = {Boeing Co hired Norsk Titanium AS to print the first structural titanium parts f...},
+	language = {en},
+	urldate = {2020-01-29},
+	journal = {Reuters},
+	month = apr,
+	year = {2017},
+	keywords = {Aerospace / Defense (Legacy), Aerospace and Defense (TRBC), BOEING, Canada, Chip Yates, Company News, Corporate Events, Europe, France, Industrials (TRBC), Metals and Mining (TRBC), Metals Markets, New York, Nordic States, NORSK, Norway, Science, Technology (TRBC), Titanium, United States, US},
+	file = {Snapshot:/Users/gwenchee/Zotero/storage/EQ999ZTF/us-norsk-boeing-idUSKBN17C264.html:text/html}
+}
+
+@misc{noauthor_boeing_nodate,
+	title = {Boeing: {3D} printing done right},
+	shorttitle = {Boeing},
+	url = {https://www.boeing.com/features/innovation-quarterly/nov2017/feature-thought-leadership-3d-printing.page},
+	abstract = {Satellite design is characterized by extreme mass criticality, multifunctional structures, low production volumes, low duty cycles, high reliability and speed to market.},
+	urldate = {2020-01-29},
+	file = {Snapshot:/Users/gwenchee/Zotero/storage/J2XRUUBG/feature-thought-leadership-3d-printing.html:text/html}
+}
+
+@article{tsai_computer_2019,
+	title = {The computer aided cutting planning of components using genetic algorithms for decommissioning of a nuclear reactor},
+	volume = {130},
+	issn = {0306-4549},
+	url = {https://www.sciencedirect.com/science/article/pii/S0306454919301161},
+	doi = {10.1016/j.anucene.2019.02.041},
+	language = {en},
+	urldate = {2020-01-30},
+	journal = {Annals of Nuclear Energy},
+	author = {Tsai, Po Chou and Huang, Xiaoxu and Hung, Yu-Hsiang and Huang, Chung-Hao and Smith, Shana},
+	month = aug,
+	year = {2019},
+	pages = {200--207},
+	file = {Snapshot:/Users/gwenchee/Zotero/storage/6PUFJF7C/S0306454919301161.html:text/html}
+}
+
+@techreport{smith_enhanced_2011,
+	title = {Enhanced geometry capabilities for {DAGMC}},
+	institution = {Los Alamos National Lab.(LANL), Los Alamos, NM (United States)},
+	author = {Smith, Brandon M. and Wilson, Paul PH and Tautges, Timothy J.},
+	year = {2011}
 }

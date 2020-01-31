@@ -1,0 +1,33 @@
+\section{Method}
+
+\subsection{Genetic Algorithm}
+
+\subsection{Reactor Geometry Generation}
+The biggest challenge for generatively designing reactor geometries with 
+non-classical shapes is defining the parameters to be varied. 
+A good balance must be struck between number of degrees of freedom (parameters) 
+and giving the algorithm the flexibility to create unique geometries. 
+Bergmann et al \cite{bergmann_simulation_2018} described a 2D re-entrant hole 
+in the Swiss Spallation Neutron Source with 9 variables that allowed the genetic 
+algorithm to cover a large exploration space of CAD geometries. 
+The 9 variables included five distance values and four angle values. 
+Veenstra et all \cite{veenstra_evolution_2018} described the undulation of 
+a Knife-fish soft robot with a fourier series. 
+The genetic algorithm varied five terms in the fourier series to find the undulation 
+that resulted in the fastest swimming. 
+
+For this project, we can learn from them by creating parameters that
+express reactor geometry simply while allowing for a large exploration space. 
+
+\subsubsection{Constraints}
+Reactor geometry constraints must be defined to ensure that only realistic 
+geometries are accepted. 
+Constraints are: 
+\begin{itemize}
+    \item Each cooling channel must fully go through the reactor from top to 
+    bottom. This is to prevent cooling channels from not having a through 
+    path, resulting in lack of heat transfer. 
+\end{itemize}
+
+\subsubsection{Parameters}
+
