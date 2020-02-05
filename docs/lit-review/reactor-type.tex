@@ -36,16 +36,52 @@ Therefore, by combining the FLiBE coolant from \gls{MSR} technology and
 the low operating pressure and large thermal margin provided by using a molten 
 salt coolant and the accident-tolerant qualities of \gls{TRISO} particle fuel. 
 
-There are two types of \gls{FHR} fuel shapes that have been explored, 
-each has \gls{TRISO} particles embedded in the graphite matrix: circulating 
-pebbles and hexagonal fuel plate elements. 
+There are several types of \gls{FHR} designs that are being developed worldwide: 
+circulating pebbles (\gls{PBFHR}, Kairos Power Reactor) and hexagonal fuel plate elements (\gls{AHTR}). 
 
 % Benchmark? 
 
-\subsection{Challenges to Model}
-% why is it so hard to model a FHR 
+\subsection{Modelling Challenges}
+% why is it so hard to model a FHR
+Verification and validation of a simulation tool is a crucial step to successfully 
+model a reactor with the goal of deployment \cite{rahnema_phenomena_2019}. 
 The \gls{FHR} has a complex core design due to the multiple heterogeneity present 
 in the fuel introduced by presence of \gls{TRISO} particles and other moderating 
 materials (i.e.in the \gls{AHTR}, \gls{TRISO} particles pressed into plates, which 
 are bundled into assembles) \cite{ramey_monte_2018,rahnema_phenomena_2019}.
+Traditional homogenization methods are insufficient to capture the correct physics 
+in \glspl{FHR}, due to the multiple heterogeneity \cite{ramey_monte_2018}. 
+For example, in the \gls{PBFHR}, pebble packing variation effects are significant, 
+resulting in large errors at the outer edge of the core when homogenized 
+\cite{rahnema_phenomena_2019}. 
+In the \gls{AHTR}, single and multiple slab homogenization decreased computation time 
+by 10, however they introduce a nontrivial error of $\sim$3\%
+\cite{ramey_monte_2018,cisneros_neutronics_2012}.
+% random stuff to take note of 
+Both full core peaking factor and within-assembly peaking factor must be evaluated, 
+due to the non-uniformity in fission density of individual \gls{TRISO} particles. 
+Neutron spectra in different materials and regions must be investigated and compared 
+against assembly averaged spectra. 
+The \gls{FHR} consists of materials that are known to have uncertainty 
+in nuclear cross-section data such as the moderation, thermalization, and absorption 
+for FliBE constituents and the thermalization and absorption 
+in the carbon within the graphite matrix \cite{rahnema_phenomena_2019}. 
+ 
+\subsection{Previous \gls{FHR} Modeling and Simulation Efforts}
+% Previous efforts to model each type of FHR. Plate & Pebble  
+Ramey et al \cite{ramey_monte_2018} conducted a 2D \gls{AHTR} assembly model with 
+continuous energy cross sections in SERPENT.
+Zhang et al introduced a 
+
+\subsection{Generative Design Challenges}
+% The generative design parameters we hope to change will change the nuances 
+% of geometry (wavy channels, distribution of TRISO particles), therefore, using 
+% homogenization methods to reduce computational cost, will result in the lack 
+% of simulation detail to effectively compare geometry types. 
+% High fidelity models of the FHR that minimizes homogenization is computationally 
+% expensive. To reduce computational time without homogenization, we could conduct 
+% generative design on a small section of the core, for example, one fuel assembly etc. 
+% How to do full core simulation then? 
+
+
 
