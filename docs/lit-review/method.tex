@@ -31,3 +31,28 @@ Constraints are:
 
 \subsubsection{Parameters}
 
+\subsection{Neutron Transport Code}
+
+\subsubsection{Generative Design Challenges}
+% The generative design parameters we hope to change will change the nuances 
+% of geometry (wavy channels, distribution of TRISO particles), therefore, using 
+% homogenization methods to reduce computational cost, will result in the lack 
+% of simulation detail to effectively compare geometry types. 
+% High fidelity models of the FHR that minimizes homogenization is computationally 
+% expensive. To reduce computational time without homogenization, we could conduct 
+% generative design on a small section of the core, for example, one fuel assembly etc. 
+% How to do full core simulation then? 
+
+To reduce computational cost when running neutron transport codes on 
+reactor geometries that include \gls{TRISO} particles, approximations 
+are used to homogenize the heterogenous \gls{TRISO} particle fuel region 
+\cite{ramey_monte_2018}. 
+Using these homogenization methods will result in lack of sufficient simulation detail 
+to effectively compare the planned variation in reactor geometry parameters (wavy 
+channels, non-uniform distribution of \gls{TRISO} particles).
+To find a balance between high fidelity simulations and computational cost, we conduct 
+generative design on a 2D assembly model. 
+
+
+
+
