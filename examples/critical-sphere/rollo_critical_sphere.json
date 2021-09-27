@@ -15,16 +15,5 @@
         "parallel": "multiprocessing",
         "objective": ["min"],
         "optimized_variable": ["radius"],
-        "pop_size": 80,
-        "generations": 10,
-        "mutation_probability": 0.23,
-        "mating_probability": 0.46,
-        "selection_operator": {"operator": "selTournament", "inds": 15, "tournsize": 5},
-        "mutation_operator": {
-            "operator": "mutPolynomialBounded",
-            "eta": 0.23,
-            "indpb": 0.23
-        },
-        "mating_operator": {"operator": "cxBlend", "alpha": 0.46}
     }
 }
