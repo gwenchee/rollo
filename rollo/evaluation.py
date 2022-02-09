@@ -84,8 +84,6 @@ class Evaluation:
                 control_vars_dict[name] = self.name_ind(
                     ind, control_dict, input_evaluators)
                 output_vals_dict[name] = [None] * len(output_dict)
-            print('control_dict', control_dict)
-            print('control_vars_dict',control_vars_dict)
             for solver in order_of_solvers:
                 # create dir and input script
                 run_input = ''''''
@@ -97,6 +95,8 @@ class Evaluation:
                         rendered_script = self.render_jinja_template_python(
                             script=self.input_scripts[solver][1],
                             control_vars_solver=control_vars_dict[name][solver],
+                            ind=ind,
+                            solver=solver,
                         )
                     else:
                         rendered_script = self.render_jinja_template(
@@ -280,6 +280,8 @@ class Evaluation:
                     rendered_script = self.render_jinja_template_python(
                         script=self.input_scripts[solver][1],
                         control_vars_solver=control_vars[solver],
+                        ind=ind,
+                        solver=solver,
                     )
                 else:
                     rendered_script = self.render_jinja_template(
@@ -484,7 +486,7 @@ class Evaluation:
             control_vars[control_dict[var][0]][var] = ind_vars
         return control_vars
 
-    def render_jinja_template_python(self, script, control_vars_solver):
+    def render_jinja_template_python(self, script, control_vars_solver, ind,  solver):
         """Renders a jinja2 templated python file and returns a templated python
         script. This will be used by solver's with a python interface such as
         OpenMC.
@@ -511,6 +513,9 @@ class Evaluation:
         for inp in control_vars_solver:
             render_str += "**{'" + inp + "':" + \
                 str(control_vars_solver[inp]) + "},"
+        if solver == "moltres":
+            render_str += "group_constant_dir='../openmc_gc_" + \
+                str(ind.gen) + "_" + str(ind.num) + "'"
         render_str += ")"
         rendered_template = eval(render_str)
         return rendered_template
