@@ -88,4 +88,7 @@ def test_ackley_minimum_check():
         )
         final_pop = a.generate()
         assert min(a.backend.results["all"]["outputs"][-1])[0] < 0.1
+<<<<<<< HEAD:tests/unit_tests/test_integration_ackley_minimum.py
         
+=======
+>>>>>>> 1f1735d4eda80c1720e4269a25f04b7d70eb6393:tests/test_integration_ackley_minimum.py
