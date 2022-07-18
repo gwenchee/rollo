@@ -398,6 +398,26 @@ title="Print to PDF"
   <a class="reference internal image-reference" href="../_images/rollo-logo.png" id="build-docs"><img alt="rollo-logo" id="build-docs" src="../_images/rollo-logo.png" style="width: 450px;" /></a>
 <section id="how-to-build-rollo-documentation">
 <h1>How to Build ROLLO Documentation<a class="headerlink" href="#how-to-build-rollo-documentation" title="Permalink to this headline"></a></h1>
+<p>In order to build the documentation in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, you will need to have
+the Sphinx third-party Python package and several Sphinx extentions.
+The easiest way to install Sphinx and its extensions is via pip:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install sphinx
+pip install nbsphinx
+pip install sphinx_rtd_theme
+pip install sphinx_book_theme
+pip install sphinx-toolbox --user
+pip install sphinx-jinja2-compat<span class="o">==</span><span class="m">0</span>.2.0b1
+pip install sphinx-autoapi
+</pre></div>
+</div>
+<p>To build the documentation as a webpage, go to <code class="docutils literal notranslate"><span class="pre">docs</span></code> and run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</div>
+<p>To build the documentation as a PDF, go to <code class="docutils literal notranslate"><span class="pre">docs</span></code> and run:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>make latexpdf
+</pre></div>
+</div>
 </section>
 
 
