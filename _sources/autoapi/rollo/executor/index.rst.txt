@@ -1,0 +1,139 @@
+:py:mod:`rollo.executor`
+========================
+
+.. py:module:: rollo.executor
+
+
+Module Contents
+---------------
+
+.. py:class:: Executor(input_file, checkpoint_file=None, verbose=False)
+
+
+
+   Executes rollo simulation from start to finish.
+
+   Instances of this class can be used to perform a rollo run.
+
+   The Executor class drives the ROLLO code execution with the following
+   steps in the execute method:
+   1) User input file validation with InputValidation
+   2) Evaluation function generation with Evaluation class
+   3) DEAP toolbox initialization with ToolboxGenerator class
+   4) Constraint initialization with Constraints class
+   5) Genetic algorithm execution with Algorithm class
+
+   :param input_file: Name of input file
+   :type input_file: str
+   :param checkpoint_file: Name of checkpoint file
+   :type checkpoint_file: str, optional
+
+   .. attribute:: input_file
+
+      Name of input file
+
+      :type: str
+
+   .. attribute:: checkpoint_file
+
+      Name of checkpoint file
+
+      :type: str
+
+   .. attribute:: verbose
+
+
+
+      :type: bool
+
+   .. py:method:: execute(self)
+
+      Executes rollo simulation to generate reactor designs.
+
+      1) Read and validate input file
+      2) Initialize evaluator
+      3) Initialize DEAP toolbox
+      4) Initialize constraints
+      5) Run genetic algorithm
+
+
+
+   .. py:method:: read_input_file(self)
+
+      Reads a json input file and returns a dictionary
+
+      :returns: **data** -- json input file converted into a dict
+      :rtype: dict
+
+
+   .. py:method:: organize_input_output(self, input_dict)
+
+      Labels the control variables and output variables with numbers
+      to keep consistency between evaluation, constraints, and algorithm
+      classes
+
+      :param input_dict: input file dict
+      :type input_dict: dict
+
+      :returns: * **control_vars** (*OrderedDict*) -- Ordered dict of control variables as keys and a list of
+                  solvers that use them as values
+                * **output_vars** (*OrderedDict*) -- Ordered dict of output variables as keys and solvers as values
+
+
+   .. py:method:: load_evaluator(self, control_dict, output_dict, input_dict)
+
+      Creates an Evaluation function object
+
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+      :param input_dict: input file dict with default values filled
+      :type input_dict: dict
+
+      :returns: **evaluator_fn** -- function that runs the evaluation software and returns output values
+                output by the software
+      :rtype: function
+
+
+   .. py:method:: load_toolbox(self, evaluator_fn, input_algorithm, input_ctrl_vars, control_dict)
+
+      Creates a DEAP toolbox object based on user-defined
+      parameters.
+
+      :param evaluator_fn: function that runs the evaluation software and returns output values
+                           output by the software
+      :type evaluator_fn: function
+      :param input_algorithm: algorithm sub-dictionary from input file
+      :type input_algorithm: dict
+      :param input_ctrl_vars: control variables sub-dictionary from input file
+      :type input_ctrl_vars: dict
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+
+      :returns: * **toolbox** (*deap.base.Toolbox object*) -- DEAP toolbox populated with user-defined genetic algorithm parameters
+                * **creator** (*deap.creator object*) -- DEAP meta-factory allowing to create classes that will fulfill the
+                  needs of the evolutionary algorithms
+
+
+   .. py:method:: load_constraints(self, output_dict, input_constraints, toolbox)
+
+      Creates a Constraints object loaded with user-defined
+      constraints information.
+
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+      :param input_constraints: constraints sub-dictionary from input file
+      :type input_constraints: dict
+      :param toolbox: DEAP toolbox populated with genetic algorithm parameters for this
+                      creator
+      :type toolbox: deap.base.Toolbox object
+
+      :returns: **constraints_obj** -- Constraints object loaded with constraint information from the
+                input file
+      :rtype: rollo.Constraints object
+
+
+

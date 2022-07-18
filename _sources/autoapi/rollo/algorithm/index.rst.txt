@@ -1,0 +1,134 @@
+:py:mod:`rollo.algorithm`
+=========================
+
+.. py:module:: rollo.algorithm
+
+
+Module Contents
+---------------
+
+.. py:class:: Algorithm(deap_toolbox, constraint_obj, checkpoint_file, deap_creator, control_dict, output_dict, input_dict, start_time, parallel_method)
+
+
+
+   The Algorithm class contains methods to initialize and execute the genetic
+   algorithm. It executes a general genetic algorithm framework that uses the
+   hyperparameters defined in the deap_toolbox, applies constraints defined
+   in the constraints_obj, evaluates fitness values using the evaluation
+   function produced by Evaluation contained in the deap_toolbox, and saves
+   all the results with BackEnd.
+
+   :param deap_toolbox: DEAP toolbox populated with user-defined genetic algorithm parameters
+   :type deap_toolbox: deap.base.Toolbox object
+   :param constraint_obj: Holds information about constraints for the problem and functions to
+                          apply the constraints
+   :type constraint_obj: rollo.constraints.Constraints
+   :param checkpoint_file: Name of checkpoint file
+   :type checkpoint_file: str
+   :param deap_creator: DEAP meta-factory allowing to create classes that will fulfill the
+                        needs of the evolutionary algorithms
+   :type deap_creator: deap.creator object
+   :param control_dict: Ordered dict of control variables as keys and a list of their
+                        solver and number of variables as each value
+   :type control_dict: OrderedDict
+   :param output_dict: Ordered dict of output variables as keys and solvers as values
+   :type output_dict: OrderedDict
+
+   .. attribute:: toolbox
+
+      DEAP toolbox populated with user-defined genetic algorithm parameters
+
+      :type: deap.base.Toolbox object
+
+   .. attribute:: constraint_obj
+
+      Holds information about constraints for the problem and functions to
+      apply the constraints
+
+      :type: rollo.constraints.Constraints
+
+   .. attribute:: cp_file
+
+      Name of checkpoint file
+
+      :type: str
+
+   .. attribute:: backend
+
+      Contains and manipulates the output backend
+
+      :type: rollo.backend.Backend
+
+   .. attribute:: parallel_method
+
+      parallelization method
+
+      :type: {'none', 'multiprocessing', 'job_control'}
+
+   .. py:method:: generate(self)
+
+      Executes the genetic algorithm and outputs the summarized results
+      into an output file
+
+      :returns: list of deap.creator.Ind for final generation
+      :rtype: list
+
+
+   .. py:method:: initialize_pop(self, pop)
+
+      Initialize population for genetic algorithm
+
+      :param pop: list of deap.creator.Ind for previous generation
+      :type pop: list
+
+      :returns: **pop** -- list of deap.creator.Ind with fitnesses evaluated
+      :rtype: list
+
+
+   .. py:method:: apply_algorithm_ngen(self, pop, gen)
+
+      Apply genetic algorithm to a population
+
+      :param pop: list of deap.creator.Ind for previous generation
+      :type pop: list
+      :param gen: generation number
+      :type gen: int
+
+      :returns: **pop** -- list of deap.creator.Ind for new generation
+      :rtype: list
+
+
+   .. py:method:: apply_selection_operator(self, pop)
+
+      Applies selection operator to population
+
+      :param pop: list of deap.creator.Ind for that generation
+      :type pop: list
+
+      :returns: new list of deap.creator.Ind after selection operator application
+      :rtype: list
+
+
+   .. py:method:: apply_mating_operator(self, pop)
+
+      Applies mating operator to population
+
+      :param pop: list of deap.creator.Ind for that generation
+      :type pop: list
+
+      :returns: new list of deap.creator.Ind after mating operator application
+      :rtype: list
+
+
+   .. py:method:: apply_mutation_operator(self, pop)
+
+      Applies mutation operator to population
+
+      :param pop: list of deap.creator.Ind for that generation
+      :type pop: list
+
+      :returns: new list of deap.creator.Ind after mutation operator application
+      :rtype: list
+
+
+

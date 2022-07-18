@@ -1,0 +1,21 @@
+:py:mod:`rollo`
+===============
+
+.. py:module:: rollo
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   algorithm/index.rst
+   backend/index.rst
+   constraints/index.rst
+   evaluation/index.rst
+   executor/index.rst
+   input_validation/index.rst
+   toolbox_generator/index.rst
+
+

@@ -1,0 +1,131 @@
+:py:mod:`rollo.toolbox_generator`
+=================================
+
+.. py:module:: rollo.toolbox_generator
+
+
+Module Contents
+---------------
+
+.. py:class:: ToolboxGenerator
+
+
+
+   The ToolboxGenerator class initializes DEAP's toolbox and creator
+   modules with genetic algorithm hyperparameters defined in the input file.
+
+   .. py:method:: setup(self, evaluator_fn, input_algorithm, input_ctrl_vars, control_dict)
+
+      sets up DEAP toolbox with user-defined inputs
+
+      :param evaluator_fn: function that runs the evaluation software and returns output values
+      :type evaluator_fn: function
+      :param input_algorithm: algorithm sub-dictionary from input file
+      :type input_algorithm: dict
+      :param input_ctrl_vars: control variables sub-dictionary from input file
+      :type input_ctrl_vars: dict
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+
+      :returns: * **toolbox** (*deap.base.Toolbox object*) -- DEAP toolbox populated with user-defined genetic algorithm parameters
+                * **creator** (*deap.creator object*) -- DEAP meta-factory allowing to create classes that will fulfill the
+                  needs of the evolutionary algorithms
+
+
+   .. py:method:: individual_values(self, input_ctrl_vars, control_dict, toolbox)
+
+      Returns an individual with ordered control variable values
+
+      :param input_ctrl_vars: control variables sub-dictionary from input file
+      :type input_ctrl_vars: dict
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+      :param toolbox: DEAP toolbox populated with user-defined genetic algorithm parameters
+      :type toolbox: deap.base.Toolbox object
+
+      :returns: Created in `rollo.toolbox_generator.ToolboxGenerator`. It is
+                a list with special attributes.
+      :rtype: deap.creator.Ind
+
+
+   .. py:method:: min_max_list(self, control_dict, input_ctrl_vars)
+
+      Returns an ordered list of min values and max values for the
+      individual
+
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+      :param input_ctrl_vars: control variables sub-dictionary from input file
+      :type input_ctrl_vars: dict
+
+      :returns: * **min_list** (*list*) -- ordered list of minimum values for individual variables
+                * **max_list** (*list*) -- ordered list of maximum values for individual variables
+
+
+   .. py:method:: add_toolbox_operators(self, toolbox, selection_dict, mutation_dict, mating_dict, min_list, max_list)
+
+      Adds selection, mutation, and mating operators to the deap toolbox
+
+      :param toolbox: initialized DEAP toolbox
+      :type toolbox: deap.base.Toolbox object
+      :param selection_dict: selection_operator sub-sub-directory from input file
+      :type selection_dict: dict
+      :param mutation_dict: mutation_operator sub-sub-directory from input file
+      :type mutation_dict: dict
+      :param mating_dict: mating_operator sub-sub-directory from input file
+      :type mating_dict: dict
+      :param min_list: ordered list of minimum values for individual variables
+      :type min_list: list
+      :param max_list: ordered list of maximum values for individual variables
+      :type max_list: list
+
+      :returns: DEAP toolbox populated with user-defined genetic algorithm parameters
+      :rtype: deap.base.Toolbox object
+
+
+   .. py:method:: add_selection_operators(self, toolbox, selection_dict)
+
+      Adds selection operator to the deap toolbox
+
+      :param toolbox: initialized DEAP toolbox
+      :type toolbox: deap.base.Toolbox object
+      :param selection_dict: selection_operator sub-sub-directory from input file
+      :type selection_dict: dict
+
+      :returns: DEAP toolbox populated with user-defined selection operator genetic
+                algorithm parameters
+      :rtype: deap.base.Toolbox object
+
+
+   .. py:method:: add_mutation_operators(self, toolbox, mutation_dict, min_list, max_list)
+
+      Adds mutation operator to the deap toolbox
+
+      :param toolbox: initialized DEAP toolbox
+      :type toolbox: deap.base.Toolbox object
+      :param mutation_dict: mutation_operator sub-sub-directory from input file
+      :type mutation_dict: dict
+
+      :returns: DEAP toolbox populated with user-defined mutation operator genetic
+                algorithm parameters
+      :rtype: deap.base.Toolbox object
+
+
+   .. py:method:: add_mating_operators(self, toolbox, mating_dict)
+
+      Adds mating operator to the deap toolbox
+
+      :param toolbox: initialized DEAP toolbox
+      :type toolbox: deap.base.Toolbox object
+      :param mating_dict: mating_operator sub-sub-directory from input file
+      :type mating_dict: dict
+
+      :returns: DEAP toolbox populated with user-defined mating operator genetic
+                algorithm parameters
+      :rtype: deap.base.Toolbox object
+
+
+

@@ -1,0 +1,352 @@
+:py:mod:`rollo.evaluation`
+==========================
+
+.. py:module:: rollo.evaluation
+
+
+Module Contents
+---------------
+
+.. py:class:: Evaluation
+
+   Holds functions that generate and execute the evaluation solver's scripts.
+
+   DEAP's (evolutionary algorithm package) fitness evaluator requires an
+   evaluation function to evaluate each individual's fitness values. The
+   Evaluation class contains a method that creates an evaluation function that
+   runs the nuclear software and returns the required fitness values, defined
+   in the input file.
+
+   .. attribute:: input_scripts
+
+      key is evaluation software name, value is that evaluation software's
+      template input script name
+
+      :type: dict
+
+   .. attribute:: output_scripts
+
+      key is evaluation software name, value is that evaluation software's
+      template output script name
+
+      :type: dict
+
+   .. py:method:: add_evaluator(self, solver_name, input_script, output_script)
+
+      Adds information about an evaluator to the Evaluation class object
+      for later use in eval_fn_generator.
+
+      :param solver_name: name of solver
+      :type solver_name: str
+      :param input_script: input script name
+      :type input_script: str
+      :param output_script: optional output script name
+      :type output_script: str
+
+
+   .. py:method:: eval_fn_generator(self, control_dict, output_dict, input_evaluators, gens, parallel_method, keep_files)
+
+      if parallel_method is none or multiprocessing, this function
+      returns a function that accepts a DEAP individual and returns a
+      tuple of output values listed in outputs
+
+      if parallel_method is job_control, this function returns a function
+      that accepts a list of DEAP individuals (population) and returns
+      a list of output value tuples. Each tuple corresponds to one
+      individual
+
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+      :param input_evaluators: evaluators sub-dictionary from input file
+      :type input_evaluators: dict
+      :param gens: total generations in simulation (defined in input file)
+      :type gens: int
+      :param parallel_method: parallelization method
+      :type parallel_method: {'none', 'multiprocessing', 'job_control'}
+
+      :returns: **eval_function** -- function that runs the evaluation software and returns output values
+                output by the software
+      :rtype: function
+
+
+   .. py:method:: create_input_execute_output_scripts(self, pop, solver, control_vars_dict, input_evaluators_solver)
+
+      Renders input scripts, copies execute scripts, and renders
+      output scripts for parallel_method=job_control in each
+      individual's directory
+
+      :param pop: list of deap.creator.Ind
+      :type pop: list
+      :param solver: name of solver
+      :type solver: str
+      :param control_vars_dict: multiple layers of dicts
+                                layer 1: gen_ind dir (str)
+                                layer 2: solver (str)
+                                layer 3: control parameter (str)
+                                layer 4: control parameter value (float)
+      :type control_vars_dict: dict
+      :param input_evaluators_solver: specific solver's evaluators sub-sub-dictionary from input file
+      :type input_evaluators_solver: dict
+
+      :rtype: None
+
+
+   .. py:method:: run_input_and_execute_and_output_scripts(self, pop, solver, input_evaluators_solver)
+
+      Runs input scripts, execute scripts or executable, and
+      output scripts for parallel_method=job_control in each
+      individual's directory
+
+      :param pop: list of deap.creator.Ind
+      :type pop: list
+      :param solver: name of solver
+      :type solver: str
+      :param control_vars_dict: multiple layers of dicts
+                                layer 1: gen_ind dir (str)
+                                layer 2: solver (str)
+                                layer 3: control parameter (str)
+                                layer 4: control parameter value (float)
+      :type control_vars_dict: dict
+      :param input_evaluators_solver: specific solver's evaluators sub-sub-dictionary from input file
+      :type input_evaluators_solver: dict
+
+      :rtype: None
+
+
+   .. py:method:: generate_run_command_job_control(self, pop, solver, single_command)
+
+      Generates bash command to run all directories executables
+      for parallel_method=job_control
+
+      :param pop: list of deap.creator.Ind
+      :type pop: list
+      :param solver: name of solver
+      :type solver: str
+      :param control_vars_dict: multiple layers of dicts
+                                layer 1: gen_ind dir (str)
+                                layer 2: solver (str)
+                                layer 3: control parameter (str)
+                                layer 4: control parameter value (float)
+      :type control_vars_dict: dict
+      :param input_evaluators_solver: specific solver's evaluators sub-sub-dictionary from input file
+      :type input_evaluators_solver: dict
+
+      :returns: **command** -- bash command to run all directories executables for
+                parallel_method=job_control
+      :rtype: str
+
+
+   .. py:method:: get_output_vals_job_control(self, output_vals_dict, pop, solver, output_dict, control_vars_dict)
+
+      returns a list of output value tuples. Each tuple corresponds to
+      output values for one individual. The results are in order of the
+      individuals in pop. For parallel_method=job_control
+
+      :param output_vals_dict: layer 1: gen_ind dir (str)
+                               layer 2: list of output values requested by rollo input file
+                                        in correct order
+      :type output_vals_dict: dict
+      :param pop: list of deap.creator.Ind
+      :type pop: list
+      :param solver: name of solver
+      :type solver: str
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+      :param control_vars_dict: multiple layers of dicts
+                                layer 1: gen_ind dir (str)
+                                layer 2: solver (str)
+                                layer 3: control parameter (str)
+                                layer 4: control parameter value (float)
+      :type control_vars_dict: dict
+
+      :returns: **all_output_vals** -- each index of list contains a tuple of output values from
+                evaluators ordered by output_dict
+      :rtype: list
+
+
+   .. py:method:: run_input_script_serial(self, solver, control_vars_solver, ind, path)
+
+      Renders an input script into an individual's directory and runs it
+      for parallel_method=none or multiprocessing
+
+      :param solver: name of solver
+      :type solver: str
+      :param control_vars_solver: name of evaluation solver software
+      :type control_vars_solver: str
+      :param ind:
+      :type ind: deap.creator.Ind
+      :param path: path name
+      :type path: str
+
+      :rtype: None
+
+
+   .. py:method:: run_execute_serial(self, input_evaluator_solver_execute, path, solver)
+
+      copies execute scripts into an individual's directory if the scripts
+      exists then runs it or only the executable for parallel_method=none
+      or multiprocessing
+
+      :param input_evaluator_solver_execute: execute list from specific solver's evaluators sub-sub-dictionary
+                                             from input file
+      :type input_evaluator_solver_execute: list
+      :param path: path name
+      :type path: str
+      :param solver: name of solver
+      :type solver: str
+
+      :rtype: None
+
+
+   .. py:method:: solver_order(self, input_evaluators)
+
+      Returns a list with solver name at its order index
+
+      :param input_evaluators: evaluators sub-dictionary from input file
+      :type input_evaluators: dict
+
+      :returns: list with solver name at its order index
+                e.g. if openmc solver order = 0 and moltres solver order = 1, the
+                returned list looks like ["openmc", "moltres"]
+      :rtype: list
+
+
+   .. py:method:: render_input_script(self, solver, control_vars_solver, ind, path)
+
+      Renders an input script into an individual's directory
+
+      :param solver: name of solver
+      :type solver: str
+      :param control_vars_solver: name of evaluation solver software
+      :type control_vars_solver: str
+      :param ind:
+      :type ind: deap.creator.Ind
+      :param path: path name
+      :type path: str
+
+      :rtype: None
+
+
+   .. py:method:: generate_execute_scripts(self, path, input_evaluator_solver_execute)
+
+      Copies execute scripts into an individual's directory
+
+      :param path: path name
+      :type path: str
+      :param input_evaluator_solver_execute: execute list from specific solver's evaluators sub-sub-dictionary
+                                             from input file
+      :type input_evaluator_solver_execute: list
+
+      :rtype: None
+
+
+   .. py:method:: generate_output_script(self, path, solver)
+
+      Copies output script into an individual's directory
+
+      :param path: path name
+      :type path: str
+      :param solver: name of solver
+      :type solver: str
+
+      :rtype: None
+
+
+   .. py:method:: subprocess_call(self, path, out_file, command)
+
+      Runs command in bash
+
+      :param path: path name
+      :type path: str
+      :param out_file: txt file to output command's stderror and stdoutput to
+      :type out_file: str
+      :param command: bash command to run
+      :type command: str
+
+      :rtype: None
+
+
+   .. py:method:: run_output_script_serial(self, output_vals, solver, output_dict, control_vars, path)
+
+      Copies an output script into an individual's directory and runs it
+      and returns a populated list with output values for each solver
+
+      :param output_vals: empty list of the correct size
+      :type output_vals: list
+      :param solver: name of solver
+      :type solver: str
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+      :param control_vars: multiple layers of dict
+                           layer 1: solver name
+                           layer 2: control parameter str
+                           layer 3: control parameter value
+      :type control_vars: dict
+      :param path: path name
+      :type path: str
+
+      :returns: **output_vals** -- output values requested by rollo input file in correct order
+      :rtype: list
+
+
+   .. py:method:: get_output_vals(self, output_vals, solver, path, output_dict, control_vars)
+
+      Returns a populated list with output values for each solver
+
+      :param output_vals: list of Nones with length corresponding to number of output values
+      :type output_vals: list
+      :param solver: name of solver
+      :type solver: str
+      :param path: path name
+      :type path: str
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+      :param control_vars: multiple layers of dict
+                           layer 1: solver name
+                           layer 2: control parameter str
+                           layer 3: control parameter value
+      :type control_vars: dict
+
+      :returns: **output_vals** -- output values requested by rollo input file in correct order
+      :rtype: list
+
+
+   .. py:method:: name_ind(self, ind, control_dict, input_evaluators)
+
+      Returns a dictionary that maps the control_dict's variable names to
+      values from ind list
+
+      :param ind: Created in `rollo.toolbox_generator.ToolboxGenerator`. It is
+                  a list with special attributes.
+      :type ind: deap.creator.Ind
+      :param control_dict: Ordered dict of control variables as keys and a list of their
+                           solver and number of variables as each value
+      :type control_dict: OrderedDict
+      :param input_evaluators: evaluators sub-dictionary from input file
+      :type input_evaluators: dict
+
+      :returns: **control_vars** -- multiple layers of dict
+                layer 1: solver name
+                layer 2: control parameter str
+                layer 3: control parameter value
+      :rtype: dict
+
+
+   .. py:method:: render_jinja_template(self, script, control_vars_solver, ind, solver)
+
+      Renders a jinja2 templated input file. This will be used by solvers
+      with text-based interfaces such as Moltres
+
+      :param script: name of evaluator template script
+      :type script: str
+      :param control_vars_solver: name of evaluation solver software
+      :type control_vars_solver: str
+
+      :returns: **rendered_template** -- rendered evaluator template script
+      :rtype: str
+
+
+

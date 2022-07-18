@@ -1,0 +1,14 @@
+:orphan:
+
+:py:mod:`rollo.__main__`
+========================
+
+.. py:module:: rollo.__main__
+
+
+Module Contents
+---------------
+
+.. py:function:: main()
+
+

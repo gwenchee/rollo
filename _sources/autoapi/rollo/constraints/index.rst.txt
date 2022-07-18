@@ -1,0 +1,83 @@
+:py:mod:`rollo.constraints`
+===========================
+
+.. py:module:: rollo.constraints
+
+
+Module Contents
+---------------
+
+.. py:class:: Constraints(output_dict, input_constraints, toolbox)
+
+
+
+   The Constraints class contains methods to initialize constraints defined
+   in the input file and applies the constraints by removing individuals that
+   do not meet the constraint.
+
+   :param output_dict: Ordered dict of output variables as keys and solvers as values
+   :type output_dict: OrderedDict
+   :param input_constraints: constraints sub-dictionary from input file
+   :type input_constraints: dict
+   :param toolbox: DEAP toolbox populated with user-defined genetic algorithm parameters
+   :type toolbox: deap.base.Toolbox object
+
+   .. attribute:: constraints
+
+      list of constraints information
+
+      :type: list
+
+   .. attribute:: numbered_oup_dict
+
+      output parameter name as key and ordered position as value
+
+      :type: dict
+
+   .. attribute:: ops
+
+      dict of accepted operators
+
+      :type: dict
+
+   .. attribute:: toolbox
+
+      DEAP toolbox populated with user-defined genetic algorithm parameters
+
+      :type: deap.base.Toolbox object
+
+   .. py:method:: output_dict_numbered(self, output_dict)
+
+      Returns dictionary of output variables and their corresponding index
+
+      :param output_dict: Ordered dict of output variables as keys and solvers as values
+      :type output_dict: OrderedDict
+
+      :returns: output parameter name as key and ordered position as value
+      :rtype: dict
+
+
+   .. py:method:: constraints_list(self, input_constraints)
+
+      Returns list of constraints information
+
+      :param input_constraints: constraints sub-dictionary from input file
+      :type input_constraints: dict
+
+      :returns: **constraints_list** -- list of constraints information
+      :rtype: list
+
+
+   .. py:method:: apply_constraints(self, pop)
+
+      Removes individuals in population that fail to meet constraints
+
+      :param pop: list of deap.creator.Ind for that generation
+      :type pop: list
+
+      :returns: list of deap.creator.Ind for that generation with individuals that
+                fail to meet constraints removed
+      :rtype: list
+
+
+

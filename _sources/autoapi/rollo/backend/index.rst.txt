@@ -1,0 +1,124 @@
+:py:mod:`rollo.backend`
+=======================
+
+.. py:module:: rollo.backend
+
+
+Module Contents
+---------------
+
+.. py:class:: BackEnd(checkpoint_file, deap_creator, control_dict, output_dict, input_file, start_time)
+
+
+
+   The BackEnd class contains methods to save genetic algorithm population
+   results into a pickled checkpoint file and to restart a partially
+   completed genetic algorithm from the checkpoint file.
+
+   :param checkpoint_file: Name of checkpoint file
+   :type checkpoint_file: str
+   :param deap_creator: DEAP meta-factory allowing to create classes that will fulfill the
+                        needs of the evolutionary algorithms
+   :type deap_creator: deap.creator object
+   :param control_dict: Ordered dict of control variables as keys and a list of their
+                        solver and number of variables as each value
+   :type control_dict: OrderedDict
+   :param output_dict: Ordered dict of output variables as keys and solvers as values
+   :type output_dict: OrderedDict
+   :param input_file: input file contents
+   :type input_file: str
+   :param start_time: time the simulation began
+   :type start_time: float
+
+   .. attribute:: results
+
+      contains results from simulation
+
+      :type: dict
+
+   .. attribute:: checkpoint_file
+
+      Name of checkpoint file
+
+      :type: str
+
+   .. attribute:: creator
+
+      DEAP meta-factory allowing to create classes that will fulfill the
+      needs of the evolutionary algorithms
+
+      :type: deap.creator object
+
+   .. attribute:: control_dict
+
+      Ordered dict of control variables as keys and a list of their
+      solver and number of variables as each value
+
+      :type: OrderedDict
+
+   .. attribute:: output_dict
+
+      Ordered dict of output variables as keys and solvers as values
+
+      :type: OrderedDict
+
+   .. attribute:: input_file
+
+      input file contents
+
+      :type: str
+
+   .. attribute:: start_time
+
+      time the simulation began
+
+      :type: float
+
+   .. py:method:: initialize_new_backend(self)
+
+      Initializes brand new backend object
+
+
+   .. py:method:: ind_naming(self)
+
+      Returns a dict with control variable name as key and their ordered
+      position in Ind as value
+
+      :returns: control variable name as key and ordered position in Ind as value
+      :rtype: dict
+
+
+   .. py:method:: output_naming(self)
+
+      Returns a dict with output parameter name as key and their ordered
+      position as value
+
+      :returns: output parameter name as key and ordered position as value
+      :rtype: dict
+
+
+   .. py:method:: initialize_checkpoint_backend(self)
+
+      Initialize backend when checkpoint is used
+
+
+   .. py:method:: initialize_stats(self)
+
+      Initialize DEAP statistics
+
+
+   .. py:method:: update_backend(self, pop, gen, invalid_ind, rndstate)
+
+      Updates backend. Called after every generation
+
+      :param pop: list of deap.creator.Ind for that generation
+      :type pop: list
+      :param gen: generation number
+      :type gen: int
+      :param invalid_ind: list of deap.creator.Ind whose fitnesses had to be evaluated
+      :type invalid_ind: list
+      :param rndstate: current state of the random number generator
+      :type rndstate: tuple
+
+
+

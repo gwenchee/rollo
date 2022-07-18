@@ -1,0 +1,141 @@
+:py:mod:`rollo.input_validation`
+================================
+
+.. py:module:: rollo.input_validation
+
+
+Module Contents
+---------------
+
+.. py:class:: InputValidation(input_dict)
+
+   The InputValidation class contains methods to read and validate the JSON
+   ROLLO input file to ensure the user defined all key parameters. If the
+   user did not, ROLLO raises an exception to tell the user which
+   parameters are missing.
+
+   .. attribute:: input
+
+      rollo json input file as a dict
+
+      :type: dict
+
+   .. py:method:: add_all_defaults(self)
+
+      Goes through the entire input_dict and adds default inputs if they
+      are missing from the input_dict
+
+      :param input_dict: input file dict
+      :type input_dict: dict
+
+      :returns: **reloaded_input_dict** -- input file dict with additional missing default inputs
+      :rtype: dict
+
+
+   .. py:method:: default_check(self, input_dict, variable, default_val)
+
+      Checks if a single variable is missing from a dict, and adds a
+      default value if it is
+
+      :param input_dict: input file dict
+      :type input_dict: dict
+      :param variable: variable name
+      :type variable: str
+      :param default_val: default input for that variable (can be str, float, dict, etc.)
+      :type default_val: any type accepted
+
+      :returns: **input_dict** -- input file dict with additional missing default input defined by
+                parameters of this function
+      :rtype: dict
+
+
+   .. py:method:: validate(self)
+
+      Validates the input dictionary and throws errors if the input file
+      does not meet rollo input file rules.
+
+
+
+   .. py:method:: validate_algorithm(self, input_algorithm, input_evaluators)
+
+      Validates the "algorithm" segment of the JSON input file
+
+
+   .. py:method:: validate_algorithm_operators(self, operator_type, input_algorithm)
+
+      Validates the genetic algorithm operators
+
+      :param operator_type: types are selection, mutation, and mating
+      :type operator_type: str
+      :param input_algorithm: algorithm sub-dictionary from input file
+      :type input_algorithm: dict
+
+
+   .. py:method:: validate_constraints(self, input_constraints, input_evaluators)
+
+      Validates the constraints segment of the JSON input file
+
+      :param input_constraints: constraints sub-dictionary from input file
+      :type input_constraints: dict
+      :param input_evaluators: evaluators sub-dictionary from input file
+      :type input_evaluators: dict
+
+
+   .. py:method:: validate_ctrl_vars(self, input_ctrl_vars)
+
+      Validates the control variables segment of the JSON input file
+
+      :param input_ctrl_vars: control variables sub-dictionary from input file
+      :type input_ctrl_vars: dict
+
+
+   .. py:method:: validate_evaluators(self, input_evaluators)
+
+      Validates the evaluators segment of the JSON input file
+
+      :param input_evaluators: evaluators sub-dictionary from input file
+      :type input_evaluators: dict
+
+
+   .. py:method:: validate_if_in_list(self, input_strings, accepted_strings)
+
+      Checks if strings are in a defined list of strings and returns a
+      boolean
+
+      :param input_strings: list of variable names to check
+      :type input_strings: list of str
+      :param accepted_strings: list of variable names to check against
+      :type accepted_strings: list of str
+
+      :returns: * **in_list** (*bool*) -- boolean indicating if all input_strings are in accepted_strings
+                * **which_strings** (*list*) -- list of variables from input_strings that are not in accepted_strings
+
+
+   .. py:method:: validate_in_list(self, variable, accepted_variables, name)
+
+      Checks if a variable is in a list of accepted variables
+
+      :param variable: name of variable to check
+      :type variable: str
+      :param accepted_variables: name of variables to check against
+      :type accepted_variables: list of str
+      :param name: parameter name
+      :type name: str
+
+
+   .. py:method:: validate_correct_keys(self, dict_to_validate, key_names, optional_key_names, variable_type)
+
+      Runs a try except routine for to check if all key names are in the
+      dict_to_validate and ensure no unwanted keys are defined
+
+      :param dict_to_validate: dict to validate
+      :type dict_to_validate: dict
+      :param key_names: names of required keys
+      :type key_names: list of str
+      :param optional_key_names: names of optional keys
+      :type optional_key_names: list of str
+      :param variable_type: parameter name
+      :type variable_type: str
+
+
+
